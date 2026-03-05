@@ -1,0 +1,98 @@
+[project]
+name = "wishl-api"
+version = "0.1.0"
+description = "Api for wishl"
+readme = "README.md"
+requires-python = ">=3.12.10"
+dependencies = [
+    "alembic>=1.16.4",
+    "annotated-types>=0.7.0",
+    "fast-depends>=2.4.12",
+    "fastapi>=0.116.1",
+    "pydantic>=2.11.7",
+    "pydantic-core>=2.33.2",
+    "pydantic-extra-types>=2.10.5",
+    "pydantic-settings>=2.10.1",
+    "email-validator>=2.0.0",
+    "pyjwt>=2.10.1",
+    "python-dotenv>=1.1.1",
+    "python-json-logger>=3.3.0",
+    "sqlalchemy>=2.0.41",
+    "typing-extensions>=4.14.1",
+    "uvicorn>=0.35.0",
+    "greenlet>=3.0.3",
+    "asyncpg>=0.30.0",
+    "httpx>=0.27.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.4.0",
+    "pytest-cov>=5.0.0",
+    "pytest-asyncio>=0.23.8",
+    "ruff>=0.6.2",
+    "ipdb>=0.13.13",
+    "pre-commit>=4.5.1",
+]
+
+[tool.ruff]
+exclude = [
+    ".git",
+    ".hg",
+    ".mypy_cache",
+    ".tox",
+    ".venv",
+    ".ruff_cache",
+    "__pypackages__",
+    "_build",
+    "buck-out",
+    "build",
+    "dist",
+    "migrations",
+    "venv",
+    "readme.md"
+]
+
+line-length = 200
+indent-width = 4
+target-version = "py312"
+
+[tool.ruff.lint]
+select = [
+    "E",   # pycodestyle errors
+    "W",   # pycodestyle warnings
+    "F",   # pyflakes
+    "I",   # isort
+    "B",   # flake8-bugbear
+    "C4",  # flake8-comprehensions
+    "UP",  # pyupgrade
+# "D",   # pydocstyle
+    "ANN", # flake8-annotations
+    "S",   # flake8-bandit
+    "SIM", # flake8-simplify
+    "PT",  # flake8-pytest-style
+    "FAST",# FastAPI
+]
+ignore = [
+    "D100",   # undocumented-public-module
+    "D102",   # undocumented-public-method
+    "D104",   # undocumented-public-package
+    "D107",   # undocumented-public-init
+    "RUF001", # ambiguous-unicode-character-string
+    "RUF002", # ambiguous-unicode-character-docstring
+    "RUF003", # ambiguous-unicode-character-comment
+    "S104",   # hardcoded-bind-all-interfaces
+    "COM812", # missing-trailing-comma
+]
+fixable = ["ALL"]
+unfixable = []
+
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = ["E402", "F401"]
+"src/models.py" = ["F401"]
+"**/{tests,docs,tools}/*" = ["E402", "F401", "F811", "R504", "ANN001", "ANN201", "F841", "S101"]
+"**/{migrations}/*" = ["I001", "F401", "E402"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
