@@ -33,7 +33,6 @@ class Settings(BaseSettings):
     @property
     def create_database_url(self) -> str:
         db_name = self.POSTGRES_DB
-        print(db_name)
         if os.getenv("PYTEST_CURRENT_TEST") and self.POSTGRES_TEST_DB:
             db_name = self.POSTGRES_TEST_DB
 
@@ -44,7 +43,7 @@ class Settings(BaseSettings):
                 password=self.POSTGRES_PASSWORD,
                 host=self.POSTGRES_HOST,
                 port=self.POSTGRES_PORT,
-                path=f"{db_name}",  # TODO f-string use?
+                path=db_name,
             )
         )
 

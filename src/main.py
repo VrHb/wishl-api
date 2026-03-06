@@ -14,7 +14,6 @@ async def lifespan(app: FastAPI) -> AsyncIterator[None]:
     """Configure logging on application startup and cleanup on shutdown."""
     # код до запуска приложения
     # можно добавить дополнительное логирование и клиенты для внешних сервисов
-    # например sentry
     yield
     # код после запуска приложения
 
